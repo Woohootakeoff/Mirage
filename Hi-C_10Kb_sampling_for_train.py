@@ -117,7 +117,7 @@ def subgraph_create_sample(hic, sprite, start_row_index, start_col_index):
         for j in range(row_num):
             brink = BRINK
             value = THRESHOLD
-            if start_row_index + i * stride + kernel_size < start_col_index + j * stride and slide_window[i][j].sum() >= brink * 255 and canny_continuous_filter(slide_window[i][j], value):
+            if start_row_index + i * stride + kernel_size < start_col_index + j * stride and slide_window[i][j].sum() >= 0.5 * brink * 255 and canny_continuous_filter(slide_window[i][j], 0.5 * value) and tmp.sum() > 76500:
                 dis = np.array([get_point_line_distance((start_row_index + i * stride, start_col_index + j * stride), [[0, 0], [1, 1]])])
                 if dis > 30:
                     index[0].append(i)
